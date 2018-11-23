@@ -37,12 +37,12 @@ export class SampleDisplay extends Component {
           //this.setState({ data:resp.zonedata})
           this.setState({
               userdata : resp.questiondata,
-              question:resp.questiondata[this.props.match.params.id++].question,
-              question_id : resp.questiondata[this.props.match.params.id++].question_id,
-              a1 : resp.questiondata[this.props.match.params.id++].a1,
-              a2 : resp.questiondata[this.props.match.params.id++].a2,
-              a3 : resp.questiondata[this.props.match.params.id++].a3,
-              a4 : resp.questiondata[this.props.match.params.id++].a4
+              question:resp.questiondata[this.props.match.params.id-1].question,
+              question_id : resp.questiondata[this.props.match.params.id-1].question_id,
+              a1 : resp.questiondata[this.props.match.params.id-1].a1,
+              a2 : resp.questiondata[this.props.match.params.id-1].a2,
+              a3 : resp.questiondata[this.props.match.params.id-1].a3,
+              a4 : resp.questiondata[this.props.match.params.id-1].a4
           
           })
         
@@ -53,7 +53,7 @@ export class SampleDisplay extends Component {
     )
     }
 
-    listclick (item)
+    listclick ()
     {
       fetch(`/question/view`,{
           method : 'GET',
@@ -68,12 +68,12 @@ export class SampleDisplay extends Component {
               //this.setState({ data:resp.zonedata})
               this.setState({
                   userdata : resp.questiondata,
-                  question:resp.questiondata[this.props.match.params.id].question,
-                  question_id : resp.questiondata[this.props.match.params.id].question_id,
-                  a1 : resp.questiondata[this.props.match.params.id].a1,
-                  a2 : resp.questiondata[this.props.match.params.id].a2,
-                  a3 : resp.questiondata[this.props.match.params.id].a3,
-                  a4 : resp.questiondata[this.props.match.params.id].a4
+                  question:resp.questiondata[this.props.match.params.id-1].question,
+                  question_id : resp.questiondata[this.props.match.params.id-1].question_id,
+                  a1 : resp.questiondata[this.props.match.params.id-1].a1,
+                  a2 : resp.questiondata[this.props.match.params.id-1].a2,
+                  a3 : resp.questiondata[this.props.match.params.id-1].a3,
+                  a4 : resp.questiondata[this.props.match.params.id-1].a4
               
               })
             
@@ -228,27 +228,27 @@ export class SampleDisplay extends Component {
                     <ol type="A">
                     <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id="ArtificialIntelligence" name="defaultExampleRadios" />
-  <label class="custom-control-label" for="ArtificialIntelligence">{this.state.a1}</label>
+  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a1} />
+  <label class="custom-control-label" for={this.state.question_id}>{this.state.a1}</label>
 </div>
 </li>
 
 <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id="ProgrammingIntelligence" name="defaultExampleRadios"/>
-  <label class="custom-control-label" for="ProgrammingIntelligence">{this.state.a2}</label>
+  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a2}/>
+  <label class="custom-control-label" for={this.state.question_id}>{this.state.a2}</label>
 </div>
 </li>
 <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id="SystemKnowledge" name="defaultExampleRadios" />
-  <label class="custom-control-label" for="SystemKnowledge">{this.state.a3}</label>
+  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a3}/>
+  <label class="custom-control-label" for={this.state.question_id}>{this.state.a3}</label>
 </div>
 </li>
 <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id="VVLSI" name="defaultExampleRadios"/>
-  <label class="custom-control-label" for="VVLSI">{this.state.a4}</label>
+  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a4}/>
+  <label class="custom-control-label" for={this.state.question_id}>{this.state.a4}</label>
 </div>
 </li>
 </ol>
@@ -324,7 +324,7 @@ export class SampleDisplay extends Component {
           this.state.userdata ?
           this.state.userdata.map(function(item, id) {
             return ( 
-                <Link to ={`/SampleDisplay/${item.question_id++}`}> <li key = {id} onClick = {this.listclick.bind(this, item)}><strong>Question No . {item.question_id}</strong>
+                <Link to ={`/SampleDisplay/${item.question_id}`}> <li key = {id} onClick = {this.listclick.bind(this)}><strong>Question No . {item.question_id}</strong>
                   
                </li></Link>
             )}, this

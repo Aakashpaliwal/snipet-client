@@ -8,7 +8,7 @@ export class Home extends Component {
     super(props);
     this.state = {
       userdata : [],
-      question_id : 1,
+      question_id : "",
      question: "",
      a1 : "",
      a2 : "",
@@ -326,7 +326,7 @@ export class Home extends Component {
           this.state.userdata ?
           this.state.userdata.map(function(item, id) {
             return ( 
-                <Link to ={`/SampleDisplay/${item.question_id++}`}> <li key = {id} ><strong>Question No . {item.question_id}</strong>
+                <Link to ={`/SampleDisplay/${item.question_id}`}> <li key = {id} ><strong>Question No . {item.question_id}</strong>
                   
                </li></Link>
             )}, this
