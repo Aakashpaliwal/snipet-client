@@ -37,12 +37,12 @@ export class SampleDisplay extends Component {
           //this.setState({ data:resp.zonedata})
           this.setState({
               userdata : resp.questiondata,
-              question:resp.questiondata[this.props.match.params.id].question,
-              question_id : resp.questiondata[this.props.match.params.id].question_id,
-              a1 : resp.questiondata[this.props.match.params.id].a1,
-              a2 : resp.questiondata[this.props.match.params.id].a2,
-              a3 : resp.questiondata[this.props.match.params.id].a3,
-              a4 : resp.questiondata[this.props.match.params.id].a4
+              question:resp.questiondata[this.props.match.params.id++].question,
+              question_id : resp.questiondata[this.props.match.params.id++].question_id,
+              a1 : resp.questiondata[this.props.match.params.id++].a1,
+              a2 : resp.questiondata[this.props.match.params.id++].a2,
+              a3 : resp.questiondata[this.props.match.params.id++].a3,
+              a4 : resp.questiondata[this.props.match.params.id++].a4
           
           })
         
@@ -115,7 +115,7 @@ export class SampleDisplay extends Component {
         //         ).then(this.getWebsite);
         //       }
           this.setState ({
-            id : this.props.match.params.id
+            question_id : this.props.match.params.id
 
           })
           //replace /contact with server url
@@ -324,7 +324,7 @@ export class SampleDisplay extends Component {
           this.state.userdata ?
           this.state.userdata.map(function(item, id) {
             return ( 
-                <Link to ={`/SampleDisplay/${item.question_id}`}> <li key = {id} onClick = {this.listclick.bind(this, item)}><strong>Question No . {item.question_id}</strong>
+                <Link to ={`/SampleDisplay/${item.question_id++}`}> <li key = {id} onClick = {this.listclick.bind(this, item)}><strong>Question No . {item.question_id}</strong>
                   
                </li></Link>
             )}, this
