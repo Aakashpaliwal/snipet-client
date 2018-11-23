@@ -12,9 +12,12 @@ export class SampleDisplay extends Component {
      a1 : "",
      a2 : "",
      a3 : "",
-     a4 : ""    
+     a4 : "",
+     players : []
+   
   
     };
+    this.handleadd = this.handleadd.bind(this);
     this.listclick = this.listclick.bind(this);
   }
   componentWillMount ()
@@ -83,6 +86,20 @@ export class SampleDisplay extends Component {
         
         )
     }
+    handleadd () {
+      const players = this.state.players.slice(0);
+
+      players.push({
+        question_id: this.state.question_id,
+        question:this.state.question,
+      });
+
+      this.setState({
+        players: players,
+      });
+      console.log(players)
+    }
+   
       change  = e => {
         this.setState ({
           [e.target.name]: e.target.value
@@ -228,27 +245,27 @@ export class SampleDisplay extends Component {
                     <ol type="A">
                     <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a1} />
-  <label class="custom-control-label" for={this.state.question_id}>{this.state.a1}</label>
+  <input type="radio" class="custom-control-input" id="option1" name="option" value = {this.state.a1} />
+  <label class="custom-control-label" for="option1">{this.state.a1}</label>
 </div>
 </li>
 
 <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a2}/>
-  <label class="custom-control-label" for={this.state.question_id}>{this.state.a2}</label>
+  <input type="radio" class="custom-control-input" id="option2" name="option" value = {this.state.a2}  />
+  <label class="custom-control-label" for="option2">{this.state.a2}</label>
 </div>
 </li>
 <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a3}/>
-  <label class="custom-control-label" for={this.state.question_id}>{this.state.a3}</label>
+  <input type="radio" class="custom-control-input" id="option3" name="option" value = {this.state.a3} />
+  <label class="custom-control-label" for="option3">{this.state.a3}</label>
 </div>
 </li>
 <li>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id={this.state.question_id} name="defaultExampleRadios" value = {this.state.a4}/>
-  <label class="custom-control-label" for={this.state.question_id}>{this.state.a4}</label>
+  <input type="radio" class="custom-control-input" id="option4" name="option" value = {this.state.a4}/>
+  <label class="custom-control-label" for="option4">{this.state.a4}</label>
 </div>
 </li>
 </ol>
@@ -258,7 +275,7 @@ export class SampleDisplay extends Component {
 <button type="button" className="btn btn-primary">Answer &amp; solution</button>
 <button type="button" className="btn btn-info">Discuss in Boards</button>
 <button type="button" className="btn btn-success">Share</button>
-<button type="button" className="btn btn-warning">Save For Later</button>
+<button className="btn btn-warning" onClick={this.handleadd.bind(this)}>Save For Later</button>
 </div>
                   </div>
                 </div>
